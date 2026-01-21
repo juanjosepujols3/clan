@@ -28,24 +28,30 @@ export default function AppShell({ children, userName }: AppShellProps) {
     <div className="drawer lg:drawer-open">
       <input id="app-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        <header className="navbar bg-base-100/80 backdrop-blur border-b border-base-300 px-6">
-          <div className="flex-none lg:hidden">
-            <label htmlFor="app-drawer" className="btn btn-square btn-ghost">
-              <span className="text-sm font-semibold">Menu</span>
+        <header className="navbar bg-base-100/80 backdrop-blur border-b border-base-300 px-4 lg:px-6 min-h-16">
+          <div className="navbar-start">
+            <label htmlFor="app-drawer" className="btn btn-square btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
             </label>
-          </div>
-          <div className="flex-1 gap-4">
-            <Link href="/dashboard" className="text-xl font-semibold">
+            <Link href="/dashboard" className="btn btn-ghost text-xl font-bold normal-case">
               ClanOps
             </Link>
-            <div className="hidden md:block">
-              <ClanSwitcher />
-            </div>
           </div>
-          <div className="flex-none gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-sm text-base-content/70">
-              {userName ? `Conectado como ${userName}` : ""}
-            </div>
+
+          <div className="navbar-center hidden lg:flex">
+            <ClanSwitcher />
+          </div>
+
+          <div className="navbar-end gap-2">
+            {userName && (
+              <div className="hidden xl:flex items-center gap-2">
+                <div className="badge badge-ghost badge-sm">
+                  {userName}
+                </div>
+              </div>
+            )}
             <button
               className="btn btn-outline btn-sm"
               onClick={() => signOut({ callbackUrl: "/" })}
@@ -54,8 +60,8 @@ export default function AppShell({ children, userName }: AppShellProps) {
             </button>
           </div>
         </header>
-        <div className="px-6 py-6">
-          <div className="md:hidden mb-4">
+        <div className="p-4 lg:p-6">
+          <div className="lg:hidden mb-6">
             <ClanSwitcher />
           </div>
           {children}

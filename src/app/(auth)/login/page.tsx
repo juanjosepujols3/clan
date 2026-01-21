@@ -41,44 +41,52 @@ export default function LoginPage() {
         <span className="badge badge-secondary badge-lg glow-cyan">
           🔐 Acceso
         </span>
-        <h1 className="text-3xl font-bold">Inicia sesión</h1>
-        <p className="text-base-content/70">
+        <h1 className="text-2xl sm:text-3xl font-bold">Inicia sesión</h1>
+        <p className="text-sm sm:text-base text-base-content/70 leading-relaxed">
           Entra a tu panel de clanes y retoma el control semanal.
         </p>
       </div>
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        <label className="form-control w-full">
-          <span className="label-text font-semibold mb-2">Correo</span>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Correo</span>
+          </label>
           <input
             type="email"
-            className="input input-bordered bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
+            className="input input-bordered w-full bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             placeholder="lider@clan.com"
             required
           />
-        </label>
+        </div>
 
-        <label className="form-control w-full">
-          <span className="label-text font-semibold mb-2">Contraseña</span>
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Contraseña</span>
+          </label>
           <input
             type="password"
-            className="input input-bordered bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
+            className="input input-bordered w-full bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Tu clave"
             required
           />
-        </label>
+        </div>
 
-        {error ? (
-          <div className="alert alert-error text-sm glass-strong">
-            <span>⚠️ {error}</span>
+        {error && (
+          <div className="alert alert-error text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{error}</span>
           </div>
-        ) : null}
+        )}
 
         <button
+          type="submit"
           className="btn btn-primary w-full btn-lg glow-violet hover:scale-105 transition-transform"
           disabled={loading}
         >
@@ -93,9 +101,9 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <div className="divider">O</div>
+      <div className="divider text-sm">O</div>
 
-      <div className="flex flex-wrap items-center justify-between text-sm">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
         <span className="text-base-content/70">¿Nuevo por aquí?</span>
         <Link className="link link-primary font-semibold" href="/signup">
           Crear cuenta →
