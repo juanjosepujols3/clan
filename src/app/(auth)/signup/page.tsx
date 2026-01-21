@@ -40,7 +40,7 @@ export default function SignupPage() {
     setLoading(false);
 
     if (result?.error) {
-      setError("Cuenta creada, pero fallo el acceso.");
+      setError("Cuenta creada, pero falló el acceso.");
       return;
     }
 
@@ -49,31 +49,34 @@ export default function SignupPage() {
 
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <span className="badge badge-outline badge-secondary">Nuevo clan</span>
-        <h1 className="text-2xl font-semibold">Crea tu cuenta</h1>
+      <div className="space-y-3">
+        <span className="badge badge-secondary badge-lg glow-cyan">
+          ✨ Nuevo clan
+        </span>
+        <h1 className="text-3xl font-bold">Crea tu cuenta</h1>
         <p className="text-base-content/70">
           Configura tu centro de mando en minutos.
         </p>
       </div>
 
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <div className="grid gap-4 md:grid-cols-2">
+      <form className="space-y-5" onSubmit={handleSubmit}>
+        <div className="grid gap-5 md:grid-cols-2">
           <label className="form-control w-full">
-            <span className="label-text">Nombre visible</span>
+            <span className="label-text font-semibold mb-2">Nombre visible</span>
             <input
               type="text"
-              className="input input-bordered"
+              className="input input-bordered bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Lider de clan"
+              placeholder="Líder de clan"
             />
           </label>
+
           <label className="form-control w-full">
-            <span className="label-text">Correo</span>
+            <span className="label-text font-semibold mb-2">Correo</span>
             <input
               type="email"
-              className="input input-bordered"
+              className="input input-bordered bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder="lider@clan.com"
@@ -81,31 +84,50 @@ export default function SignupPage() {
             />
           </label>
         </div>
+
         <label className="form-control w-full">
-          <span className="label-text">Contrasena</span>
+          <span className="label-text font-semibold mb-2">Contraseña</span>
           <input
             type="password"
-            className="input input-bordered"
+            className="input input-bordered bg-base-200/50 focus:bg-base-200 focus:border-primary focus:glow-violet transition-all"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
             minLength={8}
-            placeholder="Minimo 8 caracteres"
+            placeholder="Mínimo 8 caracteres"
           />
-          <span className="label-text-alt text-base-content/60">
-            Usa al menos 8 caracteres.
+          <span className="label-text-alt text-base-content/60 mt-2">
+            💡 Usa al menos 8 caracteres para mayor seguridad.
           </span>
         </label>
-        {error ? <div className="alert alert-error text-sm">{error}</div> : null}
-        <button className="btn btn-primary w-full" disabled={loading}>
-          {loading ? "Creando..." : "Crear cuenta"}
+
+        {error ? (
+          <div className="alert alert-error text-sm glass-strong">
+            <span>⚠️ {error}</span>
+          </div>
+        ) : null}
+
+        <button
+          className="btn btn-primary w-full btn-lg glow-violet hover:scale-105 transition-transform"
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <span className="loading loading-spinner loading-sm"></span>
+              Creando cuenta...
+            </>
+          ) : (
+            "Crear cuenta →"
+          )}
         </button>
       </form>
 
-      <div className="flex flex-wrap items-center justify-between text-sm text-base-content/70">
-        <span>Ya tienes cuenta?</span>
-        <Link className="link" href="/login">
-          Entrar
+      <div className="divider">O</div>
+
+      <div className="flex flex-wrap items-center justify-between text-sm">
+        <span className="text-base-content/70">¿Ya tienes cuenta?</span>
+        <Link className="link link-primary font-semibold" href="/login">
+          Entrar →
         </Link>
       </div>
     </div>
